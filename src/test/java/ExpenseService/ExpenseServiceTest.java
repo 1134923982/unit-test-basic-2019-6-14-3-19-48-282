@@ -43,5 +43,15 @@ class ExpenseServiceTest {
         assertSame(expense, ExpenseType.EXPENSE_TYPE_B);
     }
 
+    @Test
+    void should_return_other_expense_type_if_project_is_external_and_has_other_name() throws UnexpectedProjectTypeException {
+        // given
+        Project project = new Project(ProjectType.EXTERNAL,"Project C");
+        // when
+        ExpenseType expense=ExpenseService.getExpenseCodeByProjectTypeAndName(project);
+        // then
+        assertSame(expense, ExpenseType.OTHER_EXPENSE);
+    }
+
 
 }
